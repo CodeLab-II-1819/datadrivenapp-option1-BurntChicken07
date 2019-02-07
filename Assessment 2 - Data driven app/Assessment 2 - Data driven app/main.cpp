@@ -15,44 +15,66 @@ int main() {
     
     int input = 0;
     
+    cout << "Welcome to Tweet Twoo" << endl;
+    cout << "Please look at the menu below" << endl << endl;
+    
+    cout << "Enter 0 to search for a keyword" << endl;
+    
     cout << "Enter 1 to count tweets" << endl;
-    cin >> input;
     
     cout << "Enter 2 to count tweets mentioning money" << endl;
-    cin >> input;
     
     cout << "Enter 3 to count tweets mentioning politics" << endl;
-    cin >> input;
     
     cout << "Enter 4 to count tweets mentioning Paris" << endl;
-    cin >> input;
     
     cout << "Enter 5 to count tweets mentioning Dreamworks" << endl;
-    cin >> input;
-    
+
     cout << "Enter 6 to count tweets mentioning Uber" << endl;
-    cin >> input;
-    
-    cout << "Enter 7 to count tweets mentioning Tends" << endl;
-    cin >> input;
-    
+
+    cout << "Enter 7 to count tweets mentioning Trends" << endl;
+ 
     cout << "Enter 8 to count tweets mentioning President" << endl;
-    cin >> input;
     
     cout << "Enter 9 to count tweets mentioning Celebrity" << endl;
-    cin >> input;
-    
+
     cout << "Enter 10 to count tweets mentioning Apple" << endl;
     cin >> input;
     
     string currentTweets;
     int totalTweets = 0;
+    string search;
+    
     
     ifstream tweets;
     
+    if (input == 0){
+        
+        cout << "Please enter your search word" << endl;
+        cin >> search;
+        
+        tweets.open("sampleTweets.csv"); // opens the sample tweetstweets.open("sampleTweets.csv"); // opens the sample tweets
+        if(tweets.good()){ // checks to see if the file has opened
+            
+            while(!tweets.eof()){ // while the program is at the end of the file (eof), do this loop
+                getline(tweets, currentTweets); // goes through each 63,693 tweets, get 1 line per run through, saves the line to this variable called 'currentTweets'
+                
+                if (currentTweets.find(search)<=currentTweets.length()){ // if the word searched for is found before the length of the tweet do this
+                    cout << currentTweets << endl;
+                    
+                }
+            }
+            
+        }else {
+            cout << "The files havent opened" << endl; // prints if the files havent opened
+        }
+        tweets.close(); // closes the file
+        
+    }
+    
     //------ Opening and counting the tweets
     
-    if (input == 1){
+    else if (input == 1){
     
     tweets.open("sampleTweets.csv"); // opens the sample tweets
     if(tweets.good()){ // checks to see if the file has opened
